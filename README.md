@@ -11,5 +11,4 @@ Also var client = new DiscordWebhookClient(""); insert too
 # ToDo list
 <ul>
 <li>ClipBord sender</li>
-<li>Screnshot sender</li>
 </ul>
